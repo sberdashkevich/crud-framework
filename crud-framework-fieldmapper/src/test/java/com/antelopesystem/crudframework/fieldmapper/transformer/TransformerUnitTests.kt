@@ -14,7 +14,7 @@ class TransformerUnitTests {
     @Test
     fun testCommaDelimitedStringToListTransformer() {
         val testString = "var1,var2,var3,var4"
-        val expectedOutcome = Arrays.asList("var1", "var2", "var3", "var4")
+        val expectedOutcome = listOf("var1", "var2", "var3", "var4")
         val transformer = CommaDelimitedStringToListTransformer()
         val outcome: List<String?> = transformer.transform(TestPojo.getField("testString"), TestPojo.getField("testStringList"), testString, TestPojo.INSTANCE, TestPojo.INSTANCE) as List<String?>
         expectThat(outcome)
@@ -23,7 +23,7 @@ class TransformerUnitTests {
 
     @Test
     fun testStringListToCommaDelimitedStringTransformer() {
-        val testStringList = Arrays.asList("var1", "var2", "var3", "var4")
+        val testStringList = listOf("var1", "var2", "var3", "var4")
         val expectedOutcome = "var1,var2,var3,var4"
         val transformer = StringListToCommaDelimitedStringTransformer()
         val outcome = transformer.transform(TestPojo.getField("testStringList"), TestPojo.getField("testString"), testStringList, TestPojo.INSTANCE, TestPojo.INSTANCE)
@@ -92,7 +92,7 @@ class TransformerUnitTests {
     @Test
     fun testCommaDelimitedStringToEnumListTransformer() {
         val testString = "First,Third"
-        val expectedOutcome = Arrays.asList(TestEnum.First, TestEnum.Third)
+        val expectedOutcome = listOf(TestEnum.First, TestEnum.Third)
         val outcome = CommaDelimitedStringToEnumListTransformer().transform(TestPojo.getField("testString"), TestPojo.getField("testEnumList"), testString, TestPojo.INSTANCE, TestPojo.INSTANCE)
         expectThat(outcome)
             .isEqualTo(expectedOutcome)
@@ -100,7 +100,7 @@ class TransformerUnitTests {
 
     @Test
     fun testEnumListToCommaDelimitedString() {
-        val testEnumList = Arrays.asList(TestEnum.Second, TestEnum.First, TestEnum.Second)
+        val testEnumList = listOf(TestEnum.Second, TestEnum.First, TestEnum.Second)
         val expectedOutcome = "Second,First,Second"
         val outcome = EnumListToCommaDelimitedString().transform(TestPojo.getField("testEnumList"), TestPojo.getField("testString"), testEnumList, TestPojo.INSTANCE, TestPojo.INSTANCE)
         expectThat(outcome)
